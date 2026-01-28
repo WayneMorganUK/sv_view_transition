@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
 
+	interface HpData {
+		id: string;
+		name: string;
+		image: string;
+	}
+
 	type Props = {
 		data: {
 			hp_data: HpData[];
@@ -8,10 +14,23 @@
 	};
 
 	let { data }: Props = $props();
+
+	const imageModules = import.meta.glob('$lib/assets/*', { eager: true, as: 'url' });
+
 	function getImageById(id: string | undefined) {
 		if (!id) return null;
 		const character = data.hp_data.find((item) => item.id === id);
-		return character ? character.image : null;
+		const remoteUrl = character ? character.image : null;
+
+		if (!remoteUrl || remoteUrl === '') return null;
+
+		const imageName = remoteUrl.split('/').pop();
+		if (!imageName) return remoteUrl;
+
+		const localImagePath = `/src/lib/assets/${imageName}`;
+		const localImageUrl = imageModules[localImagePath];
+
+		return localImageUrl || remoteUrl;
 	}
 </script>
 
