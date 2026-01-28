@@ -15,7 +15,7 @@
 
 	let { data }: Props = $props();
 
-	const imageModules = import.meta.glob('$lib/assets/*', { eager: true, as: 'url' });
+	// const imageModules = import.meta.glob('$lib/assets/*', { eager: true, query: 'url' });
 
 	function getImageById(id: string | undefined) {
 		if (!id) return null;
@@ -26,11 +26,12 @@
 
 		const imageName = remoteUrl.split('/').pop();
 		if (!imageName) return remoteUrl;
+		console.log(imageName);
 
 		const localImagePath = `/src/lib/assets/${imageName}`;
-		const localImageUrl = imageModules[localImagePath];
+		// const localImageUrl = imageModules[localImagePath];
 
-		return localImageUrl || remoteUrl;
+		return `/src/lib/assets/${imageName}`
 	}
 </script>
 
