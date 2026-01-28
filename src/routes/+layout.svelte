@@ -21,4 +21,5 @@
 <main>
     <ViewTransition />
     {@render children()}
+<img src="https://github.com/WayneMorganUK/sv_view_transition/blob/master/src/lib/assets/cedric.jpg?raw=true" alt="Cedric" />
 </main>
