@@ -1,4 +1,4 @@
-<!-- <script lang="ts">
+<script lang="ts">
 	import Image from '$lib/Image.svelte';
 	  import { getPotter } from '../../getPotter.remote';
 
@@ -6,5 +6,4 @@
 
 </script>
 
-
-<Image {data} /> -->
+<Image {data} />
